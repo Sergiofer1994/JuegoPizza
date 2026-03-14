@@ -1,183 +1,185 @@
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🍕 juego para cocinar pizzas!</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/variables.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
-    <link rel="stylesheet" href="../css/screens.css" />
-    <link rel="stylesheet" href="../css/components.css" />
-    <link rel="stylesheet" href="../css/animations.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>🍕 Pizza Chef Kids!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/screens.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
 </head>
-
 <body>
 
-    <div class="bg-floaties" id="floaties"></div>
-    <div class="toast" id="toast"></div>
+  <div class="bg-floaties" id="floaties"></div>
+  <div class="toast" id="toast"></div>
 
-    <div class="oven-overlay" id="oven-overlay" style="display:none">
-        <div class="oven-emoji">🫓</div>
-        <div class="oven-text" id="oven-text">¡Horneando!</div>
-        <div class="oven-bar-bg">
-            <div class="oven-bar" id="oven-bar"></div>
-        </div>
+  <div class="oven-overlay" id="oven-overlay" style="display:none">
+    <div class="oven-emoji">🫓</div>
+    <div class="oven-text" id="oven-text">¡Horneando!</div>
+    <div class="oven-bar-bg"><div class="oven-bar" id="oven-bar"></div></div>
+  </div>
+
+  <!-- PANTALLA 1: TÍTULO -->
+  <div class="screen active" id="screen-title">
+    <div class="title-pizza">🍕</div>
+    <h1 class="game-title">Pizza Chef<br />Kids!</h1>
+    <p class="game-subtitle">¡El mejor juego de pizzas del mundo! 🌟</p>
+    <button class="btn btn-start" onclick="goTo('character')">¡JUGAR! 🎮</button>
+    <p class="title-hint">¡Conviértete en el mejor pizzero! 🍕👨‍🍳</p>
+  </div>
+
+  <!-- PANTALLA 2: PERSONAJE -->
+  <div class="screen" id="screen-character">
+    <button class="btn-back" onclick="goTo('title')">◀ Atrás</button>
+    <h2 class="screen-heading">¿Quién eres tú? 👀</h2>
+    <p class="screen-subheading">Elige tu chef favorito</p>
+    <div class="characters-grid">
+      <div class="char-card" onclick="selectChar(this,'👦','Marco','¡Le encanta la pizza!')" data-char="👦">
+        <span class="char-emoji">👦</span>
+        <div class="char-name">Marco</div>
+        <div class="char-role">Chef Aventurero</div>
+        <div class="char-desc">¡Le encanta la pizza!</div>
+      </div>
+      <div class="char-card" onclick="selectChar(this,'👧','Sofía','¡Ama las pizzas dulces!')" data-char="👧">
+        <span class="char-emoji">👧</span>
+        <div class="char-name">Sofía</div>
+        <div class="char-role">Chef Creativa</div>
+        <div class="char-desc">¡Ama las pizzas dulces!</div>
+      </div>
+      <div class="char-card" onclick="selectChar(this,'🧒','Leo','¡El rey de las especias!')" data-char="🧒">
+        <span class="char-emoji">🧒</span>
+        <div class="char-name">Leo</div>
+        <div class="char-role">Chef Picante</div>
+        <div class="char-desc">¡El rey de las especias!</div>
+      </div>
+      <div class="char-card" onclick="selectChar(this,'👩','Luna','¡Pizza = felicidad!')" data-char="👩">
+        <span class="char-emoji">👩</span>
+        <div class="char-name">Luna</div>
+        <div class="char-role">Chef Perfeccionista</div>
+        <div class="char-desc">¡Pizza = felicidad!</div>
+      </div>
     </div>
+    <button class="btn btn-yellow" id="btn-choose-char" onclick="goTo('level')" style="display:none">¡Elegir este! ✅</button>
+  </div>
 
-    <!-- PANTALLA 1: TÍTULO -->
-    <div class="screen active" id="screen-title">
-        <div class="title-pizza">🍕</div>
-        <h1 class="game-title">Pizza Chef<br />Kids!</h1>
-        <p class="game-subtitle">¡El mejor juego de pizzas del mundo! 🌟</p>
-        <button class="btn btn-start" onclick="goTo('character')">¡JUGAR! 🎮</button>
-        <p class="title-hint">¡Conviértete en el mejor pizzero! 🍕👨‍🍳</p>
+  <!-- PANTALLA 3: NIVEL -->
+  <div class="screen" id="screen-level">
+    <button class="btn-back" onclick="goTo('character')">◀ Atrás</button>
+    <h2 class="screen-heading">Elige tu nivel 🏆</h2>
+    <p class="screen-subheading">¿Cuánto sabes de pizzas?</p>
+    <div class="levels-list">
+      <div class="level-card" onclick="startGame(0)">
+        <div class="level-icon">🌱</div>
+        <div class="level-info">
+          <h3 class="level-name">Principiante</h3>
+          <p class="level-desc">Pizza simple · Sin tiempo · 2 ingredientes</p>
+          <p class="level-rounds">3 pizzas</p>
+        </div>
+        <div class="level-stars">⭐</div>
+      </div>
+      <div class="level-card" onclick="startGame(1)">
+        <div class="level-icon">🍕</div>
+        <div class="level-info">
+          <h3 class="level-name">Intermedio</h3>
+          <p class="level-desc">3 ingredientes · 60 segundos</p>
+          <p class="level-rounds">3 pizzas</p>
+        </div>
+        <div class="level-stars">⭐⭐</div>
+      </div>
+      <div class="level-card" onclick="startGame(2)">
+        <div class="level-icon">🔥</div>
+        <div class="level-info">
+          <h3 class="level-name">Avanzado</h3>
+          <p class="level-desc">4 ingredientes · 45 segundos</p>
+          <p class="level-rounds">3 pizzas</p>
+        </div>
+        <div class="level-stars">⭐⭐⭐</div>
+      </div>
+      <div class="level-card level-expert" onclick="startGame(3)">
+        <div class="level-icon">👑</div>
+        <div class="level-info">
+          <h3 class="level-name">Experto</h3>
+          <p class="level-desc">5 ingredientes · 30 segundos · ¡Trampa!</p>
+          <p class="level-rounds">4 pizzas</p>
+        </div>
+        <div class="level-stars">⭐⭐⭐⭐⭐</div>
+      </div>
     </div>
+  </div>
 
-    <!-- PANTALLA 2: PERSONAJE -->
-    <div class="screen" id="screen-character">
-        <button class="btn-back" onclick="goTo('title')">◀ Atrás</button>
-        <h2 class="screen-heading">¿Quién eres tú? 👀</h2>
-        <p class="screen-subheading">Elige tu chef favorito</p>
-        <div class="characters-grid">
-            <div class="char-card" onclick="selectChar(this,'👦','Marco','¡Le encanta la pizza!')" data-char="👦">
-                <span class="char-emoji">👦</span>
-                <div class="char-name">Marco</div>
-                <div class="char-role">Chef Aventurero</div>
-                <div class="char-desc">¡Le encanta la pizza!</div>
-            </div>
-            <div class="char-card" onclick="selectChar(this,'👧','Sofía','¡Ama las pizzas dulces!')" data-char="👧">
-                <span class="char-emoji">👧</span>
-                <div class="char-name">Sofía</div>
-                <div class="char-role">Chef Creativa</div>
-                <div class="char-desc">¡Ama las pizzas dulces!</div>
-            </div>
-            <div class="char-card" onclick="selectChar(this,'🧒','Leo','¡El rey de las especias!')" data-char="🧒">
-                <span class="char-emoji">🧒</span>
-                <div class="char-name">Leo</div>
-                <div class="char-role">Chef Picante</div>
-                <div class="char-desc">¡El rey de las especias!</div>
-            </div>
-            <div class="char-card" onclick="selectChar(this,'👩','Luna','¡Pizza = felicidad!')" data-char="👩">
-                <span class="char-emoji">👩</span>
-                <div class="char-name">Luna</div>
-                <div class="char-role">Chef Perfeccionista</div>
-                <div class="char-desc">¡Pizza = felicidad!</div>
-            </div>
-            <div class="char-card" onclick="selectChar(this,'🧑‍🍳','Suso','¡Maestro de los toppings locos!')" data-char="🧑‍🍳">
-                <span class="char-emoji">🧑‍🍳</span>
-                <div class="char-name">Suso</div>
-                <div class="char-role">Chef Ingenioso</div>
-                <div class="char-desc">¡Maestro de los toppings locos!</div>
-            </div>
-        </div>
-        <button class="btn btn-yellow" id="btn-choose-char" onclick="goTo('level')" style="display:none">¡Elegir este!
-            ✅</button>
+  <!-- PANTALLA 4: JUEGO -->
+  <div class="screen" id="screen-game">
+    <button class="btn-back" onclick="confirmBack()">◀</button>
+    <div class="hud">
+      <span class="hud-char"  id="hud-char">👦</span>
+      <span class="hud-level" id="hud-level">🌱 Principiante</span>
+      <span class="hud-score" id="hud-score">⭐ 0</span>
+      <span class="hud-timer" id="hud-timer">∞</span>
     </div>
-
-    <!-- PANTALLA 3: NIVEL -->
-    <div class="screen" id="screen-level">
-        <button class="btn-back" onclick="goTo('character')">◀ Atrás</button>
-        <h2 class="screen-heading">Elige tu nivel 🏆</h2>
-        <p class="screen-subheading">¿Cuánto sabes de pizzas?</p>
-        <div class="levels-list">
-            <div class="level-card" onclick="startGame(0)">
-                <div class="level-icon">🌱</div>
-                <div class="level-info">
-                    <h3 class="level-name">Principiante</h3>
-                    <p class="level-desc">Pizza simple · Sin tiempo · 2 ingredientes</p>
-                    <p class="level-rounds">3 pizzas</p>
-                </div>
-                <div class="level-stars">⭐</div>
-            </div>
-            <div class="level-card" onclick="startGame(1)">
-                <div class="level-icon">🍕</div>
-                <div class="level-info">
-                    <h3 class="level-name">Intermedio</h3>
-                    <p class="level-desc">3 ingredientes · 60 segundos</p>
-                    <p class="level-rounds">3 pizzas</p>
-                </div>
-                <div class="level-stars">⭐⭐</div>
-            </div>
-            <div class="level-card" onclick="startGame(2)">
-                <div class="level-icon">🔥</div>
-                <div class="level-info">
-                    <h3 class="level-name">Avanzado</h3>
-                    <p class="level-desc">4 ingredientes · 45 segundos</p>
-                    <p class="level-rounds">3 pizzas</p>
-                </div>
-                <div class="level-stars">⭐⭐⭐</div>
-            </div>
-            <div class="level-card level-expert" onclick="startGame(3)">
-                <div class="level-icon">👑</div>
-                <div class="level-info">
-                    <h3 class="level-name">Experto</h3>
-                    <p class="level-desc">5 ingredientes · 30 segundos · ¡Trampa!</p>
-                    <p class="level-rounds">4 pizzas</p>
-                </div>
-                <div class="level-stars">⭐⭐⭐⭐⭐</div>
-            </div>
-        </div>
+    <div class="round-indicator" id="round-indicator">Pizza 1 de 3</div>
+    <div class="order-card">
+      <div class="order-header">
+        <span class="order-icon">🧾</span>
+        <span class="order-title">¡El cliente quiere:</span>
+      </div>
+      <div class="order-ingredients" id="order-ingredients"></div>
     </div>
-
-    <!-- PANTALLA 4: JUEGO -->
-    <div class="screen" id="screen-game">
-        <button class="btn-back" onclick="confirmBack()">◀</button>
-        <div class="hud">
-            <span class="hud-char" id="hud-char">👦</span>
-            <span class="hud-level" id="hud-level">🌱 Principiante</span>
-            <span class="hud-score" id="hud-score">⭐ 0</span>
-            <span class="hud-timer" id="hud-timer">∞</span>
-        </div>
-        <div class="round-indicator" id="round-indicator">Pizza 1 de 3</div>
-        <div class="order-card" id="order-card">
-            <div class="order-header">
-                <span class="order-icon">🧾</span>
-                <span class="order-title">¡El cliente quiere:</span>
-            </div>
-            <div class="order-ingredients" id="order-ingredients"></div>
-        </div>
-        <div class="pizza-workspace" id="pizza-workspace">
-            <div class="chef-badge" id="chef-badge" style="display:none">👨‍🍳</div>
-        </div>
-        <div class="steps-bar" id="steps-bar"></div>
-        <div class="action-area">
-            <div class="action-title" id="action-title">Elige un ingrediente:</div>
-            <div class="ingredients-grid" id="ingredients-grid"></div>
-            <div class="action-btns" id="action-btns" style="display:none">
-                <button class="action-btn btn-bake" onclick="startBaking()">🔥 Hornear</button>
-                <button class="action-btn btn-cut" onclick="cutPizza()">🔪 Cortar</button>
-                <button class="action-btn btn-serve" onclick="servePizza()">🍽️ Servir</button>
-            </div>
-        </div>
+    <div class="pizza-workspace" id="pizza-workspace">
+      <div class="chef-badge" id="chef-badge" style="display:none">👨‍🍳</div>
     </div>
-
-    <!-- PANTALLA 5: RESULTADOS -->
-    <div class="screen" id="screen-results">
-        <div class="result-emoji" id="result-emoji">🎉</div>
-        <h2 class="result-title" id="result-title">¡Perfecto!</h2>
-        <div class="result-score" id="result-score">1000 pts</div>
-        <div class="result-stars" id="result-stars">⭐⭐⭐</div>
-        <div class="result-details" id="result-details"></div>
-        <div class="result-btns">
-            <button class="btn btn-white" onclick="goTo('level')">Volver a niveles</button>
-            <button class="btn btn-yellow" onclick="replayLevel()">¡Otra vez! 🔄</button>
-            <button class="btn btn-green" onclick="goTo('title')">🏠 Inicio</button>
+    <div class="steps-bar" id="steps-bar"></div>
+    <div class="action-area">
+      <div class="action-title" id="action-title">Elige un ingrediente:</div>
+      <div class="ingredients-grid" id="ingredients-grid"></div>
+      <div class="action-btns" id="action-btns" style="display:none">
+        <button class="action-btn btn-bake" onclick="startBaking()">🔥 Hornear</button>
+      </div>
+      <div class="cut-controls" id="cut-controls" style="display:none">
+        <div class="cut-info">
+          <span class="cut-icon">✂️</span>
+          <span class="slice-count" id="slice-count">0 porciones</span>
         </div>
+        <div class="cut-btns">
+          <button class="action-btn btn-reset-cut" onclick="resetCuts()">🔄 Borrar</button>
+          <button class="action-btn btn-serve btn-serve-cut" id="btn-serve-cut" onclick="serveCutPizza()" disabled>
+            ✅ Listo
+          </button>
+        </div>
+      </div>
+      <div class="final-serve" id="final-serve" style="display:none">
+        <button class="action-btn btn-serve btn-final-serve" onclick="finalServe()">
+          🍽️ ¡Servir al cliente!
+        </button>
+      </div>
     </div>
+  </div>
 
-    <script src="../js/data.js"></script>
-    <script src="../js/pizza.js"></script>
-    <script src="../js/game.js"></script>
-    <script src="../js/ui.js"></script>
-    <script src="../js/main.js"></script>
+  <!-- PANTALLA 5: RESULTADOS -->
+  <div class="screen" id="screen-results">
+    <div class="result-emoji" id="result-emoji">🎉</div>
+    <h2 class="result-title" id="result-title">¡Perfecto!</h2>
+    <div class="result-score" id="result-score">1000 pts</div>
+    <div class="result-stars" id="result-stars">⭐⭐⭐</div>
+    <div class="result-details" id="result-details"></div>
+    <div class="result-btns">
+      <button class="btn btn-white"  onclick="goTo('level')">Volver a niveles</button>
+      <button class="btn btn-yellow" onclick="replayLevel()">¡Otra vez! 🔄</button>
+      <button class="btn btn-green"  onclick="goTo('title')">🏠 Inicio</button>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/pizza.js"></script>
+  <script src="../js/game.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/main.js"></script>
 </body>
-
 </html>
