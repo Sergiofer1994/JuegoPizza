@@ -1,0 +1,108 @@
+#screen-title {
+    background: linear-gradient(160deg, #FF6B6B 0%, #FFA500 40%, #FFD700 100%);
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.title-pizza {
+    font-size: clamp(4rem, 15vw, 8rem);
+    animation: bounceSpin 2s ease-in-out infinite;
+    line-height: 1;
+}
+
+.game-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    color: white;
+    text-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+    line-height: 1.1;
+}
+
+.game-subtitle {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 700;
+}
+
+.title-hint {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+#screen-character {
+    background: linear-gradient(160deg, #48CAE4 0%, #ADE8F4 100%);
+    gap: 16px;
+    padding-top: 60px;
+}
+
+#screen-level {
+    background: linear-gradient(160deg, #52B788 0%, #95D5B2 100%);
+    gap: 16px;
+    padding-top: 60px;
+}
+
+#screen-game {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+    gap: 0;
+    padding: 12px;
+    padding-top: 50px;
+    align-items: center;
+}
+
+#screen-results {
+    background: linear-gradient(160deg, #F72585 0%, #B5179E 50%, #7209B7 100%);
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.result-emoji {
+    font-size: clamp(3.5rem, 12vw, 5.5rem);
+    animation: bounceSpin 1.5s ease-in-out infinite;
+}
+
+.result-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    color: white;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.result-score {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 4.5rem);
+    color: var(--yellow);
+    text-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.result-stars {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    letter-spacing: 4px;
+}
+
+.result-details {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 16px 24px;
+    color: white;
+    font-size: clamp(0.82rem, 2.5vw, 1rem);
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+.screen-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    color: white;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.screen-subheading {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    text-align: center;
+}
