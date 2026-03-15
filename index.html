@@ -154,6 +154,24 @@
             <div class="action-btns" id="action-btns" style="display:none">
                 <button class="action-btn btn-bake" onclick="startBaking()">🔥 Hornear</button>
             </div>
+            <div class="cut-controls" id="cut-controls" style="display:none">
+                <div class="cut-info">
+                    <span class="cut-icon">✂️</span>
+                    <span class="slice-count" id="slice-count">0 porciones</span>
+                </div>
+                <div class="cut-btns">
+                    <button class="action-btn btn-cut-now" onclick="autoCutPizza()">⚡ Cortar ya</button>
+                    <button class="action-btn btn-reset-cut" onclick="resetCuts()">🔄 Borrar</button>
+                    <button class="action-btn btn-serve btn-serve-cut" id="btn-serve-cut" onclick="serveCutPizza()" disabled>
+                        ✅ Listo
+                    </button>
+                </div>
+            </div>
+            <div class="final-serve" id="final-serve" style="display:none">
+                <button class="action-btn btn-serve btn-final-serve" onclick="finalServe()">
+                    🍽️ ¡Servir al cliente!
+                </button>
+            </div>
         </div>
     </div>
 
