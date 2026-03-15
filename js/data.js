@@ -8,20 +8,22 @@ const LEVELS = [
 ];
 
 const INGREDIENTS = [
-  { id:'tomato',    emoji:'🍅', name:'Tomate',     isBase:true  },
-  { id:'cheese',    emoji:'🧀', name:'Queso',      isBase:true  },
-  { id:'pepper',    emoji:'🫑', name:'Pimiento',   isBase:false },
-  { id:'mushroom',  emoji:'🍄', name:'Champiñón',  isBase:false },
-  { id:'onion',     emoji:'🧅', name:'Cebolla',    isBase:false },
-  { id:'olive',     emoji:'🫒', name:'Aceituna',   isBase:false },
-  { id:'meat',      emoji:'🥩', name:'Carne',      isBase:false },
-  { id:'corn',      emoji:'🌽', name:'Maíz',       isBase:false },
-  { id:'ham',       emoji:'🍖', name:'Jamón',      isBase:false },
-  { id:'oregano',   emoji:'🫙', name:'Orégano',    isBase:false },
-  { id:'chili',     emoji:'🌶️', name:'Chile',     isBase:false },
-  { id:'anchovy',   emoji:'🐟', name:'Anchoa',     isBase:false },
-  { id:'basil',     emoji:'🌿', name:'Albahaca',   isBase:false },
-  { id:'pineapple', emoji:'🍍', name:'Piña',       isBase:false },
+  { id:'tomato',        emoji:'🍅',  name:'Tomate',           isBase:true,  svgType:'sauce'         },
+  { id:'tomato_slice',  emoji:'🍅',  name:'Tomate en loncha', isBase:false, svgType:'tomato_slice'  },
+  { id:'cheese',        emoji:'🧀',  name:'Queso',            isBase:true,  svgType:'cheese'        },
+  { id:'cheese_grated', emoji:'🧀',  name:'Queso rallado',    isBase:false, svgType:'cheese_grated' },
+  { id:'pepper',        emoji:'🫑',  name:'Pimiento',         isBase:false, svgType:'topping'       },
+  { id:'mushroom',      emoji:'🍄',  name:'Champiñón',        isBase:false, svgType:'topping'       },
+  { id:'onion',         emoji:'🧅',  name:'Cebolla',          isBase:false, svgType:'topping'       },
+  { id:'olive',         emoji:'🫒',  name:'Aceituna',         isBase:false, svgType:'topping'       },
+  { id:'meat',          emoji:'🥩',  name:'Carne',            isBase:false, svgType:'topping'       },
+  { id:'corn',          emoji:'🌽',  name:'Maíz',             isBase:false, svgType:'topping'       },
+  { id:'ham',           emoji:'🍖',  name:'Jamón',            isBase:false, svgType:'topping'       },
+  { id:'oregano',       emoji:'🫙',  name:'Orégano',          isBase:false, svgType:'topping'       },
+  { id:'chili',         emoji:'🌶️', name:'Chile',            isBase:false, svgType:'topping'       },
+  { id:'anchovy',       emoji:'🐟',  name:'Anchoa',           isBase:false, svgType:'topping'       },
+  { id:'basil',         emoji:'🌿',  name:'Albahaca',         isBase:false, svgType:'topping'       },
+  { id:'pineapple',     emoji:'🍍',  name:'Piña',             isBase:false, svgType:'topping'       },
 ];
 
 const CHARACTERS = [
@@ -29,16 +31,18 @@ const CHARACTERS = [
   { emoji:'👧', name:'Sofía', role:'Chef Creativa',       desc:'¡Ama las pizzas dulces!' },
   { emoji:'🧒', name:'Leo',   role:'Chef Picante',        desc:'¡El rey de las especias!' },
   { emoji:'👩', name:'Luna',  role:'Chef Perfeccionista', desc:'¡Pizza = felicidad!' },
-  { emoji:'🧑‍🍳', name:'Suso',  role:'Chef Ingenioso',      desc:'¡Maestro de los toppings locos!' },
+  { emoji:'🧑‍🍳', name:'Suso', role:'Chef Ingenioso',      desc:'¡Maestro de los toppings locos!' },
 ];
 
 const FEEDBACK = {
-  correctIng:    ['¡Perfecto! {emoji}','¡Genial! {name} añadida 🎉','¡Así se hace! {emoji}','¡Qué delicia! {name} 😋'],
-  wrongIng:      ['❌ ¡Ese no va ahí!','❌ ¡Incorrecto! -10 pts','❌ ¡Eso no es para esta pizza!','❌ ¡Ups! Ese no toca'],
-  ovenMessages:  ['¡Calentando el horno! 🔥','¡El queso está burbujeando! 🧀','¡Huele delicioso! 😍','¡Casi lista! ⏰','¡Lista para salir! 🍕'],
-  roundComplete: ['🍕 ¡Pizza perfecta! ¡Siguiente!','⭐ ¡Increíble! ¡A por otra!','🔥 ¡Eres un genio!','👨‍🍳 ¡El cliente está feliz!'],
-  timeUp:        '⏰ ¡Se acabó el tiempo!',
-  alreadyAdded:  '¡Ya pusiste ese ingrediente! 😅',
+  correctIng:      ['¡Perfecto! {emoji}','¡Genial! {name} añadida 🎉','¡Así se hace! {emoji}','¡Qué delicia! {name} 😋'],
+  wrongIng:        ['❌ ¡Ese no va ahí!','❌ ¡Incorrecto! -10 pts','❌ ¡Eso no es para esta pizza!','❌ ¡Ups! Ese no toca'],
+  ovenMessages:    ['¡Calentando el horno! 🔥','¡El queso está burbujeando! 🧀','¡Huele delicioso! 😍','¡Casi lista! ⏰','¡Lista para salir! 🍕'],
+  roundComplete:   ['🍕 ¡Pizza perfecta! ¡Siguiente!','⭐ ¡Increíble! ¡A por otra!','🔥 ¡Eres un genio!','👨‍🍳 ¡El cliente está feliz!'],
+  cutInstructions: '✂️ ¡Arrastra el cuchillo para cortar la pizza!',
+  cutDone:         '🔪 ¡Cortada en {slices} porciones! ¡A servir!',
+  timeUp:          '⏰ ¡Se acabó el tiempo!',
+  alreadyAdded:    '¡Ya pusiste ese ingrediente! 😅',
 };
 
 const RESULTS = [
