@@ -95,6 +95,23 @@ const Game = (() => {
     state.showCuts=true; state.cutLines=PizzaCutter.getCuts();
   }
 
+  function autoCut(){
+    if(state.step!==2) return false;
+    const size = 220;
+    const s = Math.min(16, 4 * 2);
+    const lines = [
+      {x1:size/2, y1:5, x2:size/2, y2:size-5},
+      {x1:5, y1:size/2, x2:size-5, y2:size/2},
+      {x1:10, y1:10, x2:size-10, y2:size-10},
+      {x1:10, y1:size-10, x2:size-10, y2:10}
+    ];
+    state.cutLines = lines;
+    state.sliceCount = s;
+    state.cuttingReady = true;
+    state.showCuts = true;
+    return true;
+  }
+
   function finalizeCut(){
     if(state.step!==2||!state.cuttingReady) return false;
     state.step=3; state.cutLines=PizzaCutter.getCuts(); return true;
@@ -125,5 +142,5 @@ const Game = (() => {
     },1200);
   }
 
-  return {getState,getLevel,setCharacter,startGame,beginRound,addIngredient,bake,registerCut,finalizeCut,serve};
+  return {getState,getLevel,setCharacter,startGame,beginRound,addIngredient,bake,registerCut,autoCut,finalizeCut,serve};
 })();

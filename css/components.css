@@ -104,6 +104,7 @@
 .action-btn:hover  { transform:translateY(-2px); box-shadow:0 6px 0 rgba(0,0,0,0.15); }
 .action-btn:active { transform:translateY(1px); }
 .btn-bake      { background:var(--tomato); color:white; }
+.btn-cut-now   { background:#ff9f1c; color:white; }
 .btn-serve     { background:var(--green);  color:white; }
 .btn-reset-cut { background:#888; color:white; }
 

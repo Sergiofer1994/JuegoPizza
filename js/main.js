@@ -79,6 +79,43 @@ function startBaking(){
   });
 }
 
+function cutPizza(){
+  const state = Game.getState();
+  if(state.step < 2){
+    UI.showToast('✋ Primero hornea la pizza antes de cortar.', true);
+    return;
+  }
+  UI.showCuttingPanel();
+}
+
+function autoCutPizza(){
+  const state = Game.getState();
+  if(state.step < 2){
+    UI.showToast('✋ Primero hornea la pizza antes de cortar.', true);
+    return;
+  }
+
+  if(!Game.autoCut()){
+    UI.showToast('⚠️ No se pudo cortar automáticamente. Arrastra en la pizza.', true);
+    return;
+  }
+
+  UI.renderPizza();
+  UI.renderSteps();
+  UI.showToast('⚡ Pizza cortada automáticamente. ¡Ya puedes servir!', false);
+  document.getElementById('slice-count').textContent = '8 porciones';
+  UI.updateServeBtn(true);
+}
+
+function servePizza(){
+  const state = Game.getState();
+  if(state.step < 3){
+    UI.showToast('✋ Termina de cortar y presiona Listo antes de servir.', true);
+    return;
+  }
+  finalServe();
+}
+
 function serveCutPizza(){
   const ok=Game.finalizeCut();
   if(!ok){ UI.showToast('✂️ ¡Haz al menos 2 cortes primero!',true); return; }
