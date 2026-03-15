@@ -13,10 +13,49 @@ const PizzaRenderer = (() => {
     const cx=size/2, cy=size/2, r=size/2-5;
     const svg = svgEl('svg',{width:size,height:size,viewBox:`0 0 ${size} ${size}`});
 
+    // Gradientes y textura para hacer la pizza más real
+    const defs = svgEl('defs');
+    const crustGrad = svgEl('radialGradient',{id:'crust-grad',cx:'50%',cy:'50%',r:'60%'});
+    crustGrad.appendChild(svgEl('stop',{offset:'0%','stop-color':'#f7d5ab'}));
+    crustGrad.appendChild(svgEl('stop',{offset:'45%','stop-color':'#d99b66'}));
+    crustGrad.appendChild(svgEl('stop',{offset:'100%','stop-color':'#c17645'}));
+
+    const sauceGrad = svgEl('radialGradient',{id:'sauce-grad',cx:'50%',cy:'50%',r:'75%'});
+    sauceGrad.appendChild(svgEl('stop',{offset:'0%','stop-color':'#ff6f45'}));
+    sauceGrad.appendChild(svgEl('stop',{offset:'65%','stop-color':'#c0392b'}));
+    sauceGrad.appendChild(svgEl('stop',{offset:'100%','stop-color':'#90221c'}));
+
+    const crustTexture = svgEl('filter',{id:'crust-texture',x:'-20%',y:'-20%','width':'140%','height':'140%'});
+    crustTexture.appendChild(svgEl('feTurbulence',{type:'fractalNoise',baseFrequency:'0.04',numOctaves:'3',seed:'18'}));
+    crustTexture.appendChild(svgEl('feColorMatrix',{type:'saturate',values:'0.85'}));
+    crustTexture.appendChild(svgEl('feComposite',{in:'SourceGraphic',in2:'SourceGraphic',operator:'arithmetic',k1:'0',k2:'0.9',k3:'0',k4:'0.1'}));
+
+    defs.appendChild(crustGrad);
+    defs.appendChild(sauceGrad);
+    defs.appendChild(crustTexture);
+    svg.appendChild(defs);
+
     svg.appendChild(svgEl('ellipse',{cx,cy:size-7,rx:r*0.82,ry:10,fill:'rgba(0,0,0,0.14)'}));
-    svg.appendChild(svgEl('circle',{cx,cy,r,fill:'#D4A574'}));
-    svg.appendChild(svgEl('circle',{cx,cy,r:r-10,fill:'#C49060'}));
+    svg.appendChild(svgEl('circle',{cx,cy,r,fill:'url(#crust-grad)',filter:'url(#crust-texture)'}));
+    svg.appendChild(svgEl('circle',{cx,cy,r:r-10,fill:'#C49060',opacity:0.96}));
     svg.appendChild(svgEl('circle',{cx,cy,r:r-13,fill:'#F5DEB3'}));
+    svg.appendChild(svgEl('circle',{cx,cy,r:r-18,fill:'url(#sauce-grad)',opacity:0.84}));
+
+    // Detalles de especias en la corteza
+    for(let i=0;i<18;i++){
+      const a=Math.random()*Math.PI*2;
+      const rr=r-4 + Math.random()*3;
+      const px=cx+Math.cos(a)*rr, py=cy+Math.sin(a)*rr;
+      svg.appendChild(svgEl('circle',{cx:px,cy:py,r:1+Math.random()*1.3,fill:'#a65e2a',opacity:0.55}));
+    }
+
+    // Manchas de salsa para mayor realismo
+    for(let i=0;i<20;i++){
+      const a=Math.random()*Math.PI*2;
+      const d=(r-30)*Math.sqrt(Math.random());
+      const sx=cx+Math.cos(a)*d, sy=cy+Math.sin(a)*d;
+      svg.appendChild(svgEl('circle',{cx:sx,cy:sy,r:1.5+Math.random()*1.8,fill:'#b82f24',opacity:0.5}));
+    }
 
     for(let i=0;i<12;i++){
       const a=(i/12)*Math.PI*2;
@@ -105,6 +144,12 @@ const PizzaRenderer = (() => {
         cx:sx,cy:sy,rx:r*0.1,ry:r*0.05,fill:'#FEFCBF',opacity:0.9,
         transform:`rotate(${a*180/Math.PI+90},${sx},${sy})`
       }));
+    }
+    for(let i=0;i<4;i++){
+      const a=(i/4)*Math.PI*2+Math.random()*0.3;
+      const d=r*0.45+Math.random()*r*0.15;
+      const sx=cx+Math.cos(a)*d, sy=cy+Math.sin(a)*d;
+      svg.appendChild(svgEl('ellipse',{cx:sx,cy:sy,rx:r*0.04,ry:r*0.02,fill:'#fff8d2',opacity:0.95}));
     }
     svg.appendChild(svgEl('ellipse',{cx:cx-r*0.2,cy:cy-r*0.25,rx:r*0.18,ry:r*0.1,fill:'white',opacity:0.35}));
   }
